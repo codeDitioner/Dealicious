@@ -16,13 +16,17 @@ class LoginViewController: UIViewController {
         
         
         @IBAction func onSignIn(_ sender: Any) {
-           
             PFUser.logInWithUsername(inBackground: usernameField.text! , password: passwordField.text!) { (user, error) in
                 if user != nil {
                     print(user?.username)
+                    //let modalVC = DealsViewController.instantiateFromStoryboard(self.storyboard!)
+//"Please enter username and Password first"
+                    //let signUpVC = DealsViewController()
+                    //self.present(DealsViewController(), animated: true, completion: nil)
                     self.performSegue(withIdentifier: "loginSegue", sender: nil)
                 } else {
-                    print("Error: \(error?.localizedDescription)")
+                    self.showAlert(message: "\(error!.localizedDescription)")
+                    print("Error: \(error!.localizedDescription)")
                 }
             }
         }   
@@ -31,12 +35,12 @@ class LoginViewController: UIViewController {
             let user = PFUser()
             user.username = usernameField.text
             user.password = passwordField.text
-    
             user.signUpInBackground { (success, error) in
                 if success {
                     self.performSegue(withIdentifier: "loginSegue", sender: nil)
                 } else {
-                    print("Error: \(error?.localizedDescription)")
+                    self.showAlert(message: "\(error!.localizedDescription)")
+                    print("Error: \(error!.localizedDescription)")
                 }
             }
         }
@@ -45,5 +49,14 @@ class LoginViewController: UIViewController {
 
             // Do any additional setup after loading the view.
         }
+    
+    func showAlert(message: String) {
+        let dialogMessage = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            print("Ok button tapped")
+         })
+        dialogMessage.addAction(ok)
+        self.present(dialogMessage, animated: true, completion: nil)
+    }
 }
 
