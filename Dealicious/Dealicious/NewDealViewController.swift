@@ -9,9 +9,18 @@
 import UIKit
 import Parse
 import AlamofireImage
+import CoreLocation
 
 class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
+    private lazy var locationManager: CLLocationManager = {
+        let manager = CLLocationManager()
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.delegate = self
+        return manager
+    }()
+    
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var storeField: UITextField!
     @IBOutlet weak var productField: UITextField!
@@ -39,6 +48,17 @@ class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         deal["image"] = file
         
+
+        //Pushing location to DB
+        if let location = locationManager.location {
+            let latitude = location.coordinate.latitude
+            let longitude = location.coordinate.longitude
+            // Handle location update
+            print("Lng: \(longitude) & Lat: \(latitude)")
+            deal["longitude"] = longitude
+            deal["latitude"] = latitude
+        }
+        
         deal.saveInBackground{ (success, error) in
             if success{
                 self.dismiss(animated: true, completion: nil)
@@ -47,10 +67,8 @@ class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, 
                 print("error!")
             }
         }
-        
     }
-    
-    
+   
     
     @IBAction func onCameraButton(_ sender: Any) {
         
@@ -67,7 +85,6 @@ class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         let image = info[.editedImage] as! UIImage
@@ -76,34 +93,72 @@ class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, 
         let scaledImage = image.af.imageAspectScaled(toFill: size)
         
         imageView.image = scaledImage
-        
+       
         dismiss(animated: true, completion: nil)
     }
     
-    
+
     @IBAction func onPostButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        if let location = locationManager.location {
+            let latitude = location.coordinate.latitude
+            let longitude = location.coordinate.longitude
+            // Handle location update
+            print("\(latitude) & \(longitude)")
+        }
+        //dismiss(animated: true, completion: nil)
     }
     
     
     @IBAction func onCancelButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        locationManager.requestWhenInUseAuthorization()
+        
+        // Request a user’s location once
         // Do any additional setup after loading the view.
+        
     }
     
+}
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+//Handling location
+extension NewDealViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            let latitude = location.coordinate.latitude
+            let longitude = location.coordinate.longitude
+            // Handle location update
+            print("\(latitude) & \(longitude)")
+        }
     }
-    */
-
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
+    
+    func locationManager(
+        _ manager: CLLocationManager,
+        didChangeAuthorization status: CLAuthorizationStatus
+    ) {
+        // Get the current location permissions
+        let status = CLLocationManager.authorizationStatus()
+        
+        // Handle each case of location permissions
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.requestLocation()
+            print("status granted")
+        case .denied:
+            print("status denied")
+        case .notDetermined:
+            print("status not yet determined")
+        case .restricted:
+            print("status restricted")
+        }
+    }
+    
 }
