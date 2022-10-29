@@ -7,11 +7,6 @@
 //
 
 import UIKit
-<<<<<<< Updated upstream
-
-class NewDealViewController: UIViewController {
-
-=======
 import Parse
 import AlamofireImage
 import CoreLocation
@@ -53,6 +48,7 @@ class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         deal["image"] = file
         
+
         //Pushing location to DB
         if let location = locationManager.location {
             let latitude = location.coordinate.latitude
@@ -72,7 +68,7 @@ class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
         }
     }
-    
+   
     
     @IBAction func onCameraButton(_ sender: Any) {
         
@@ -89,7 +85,6 @@ class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         let image = info[.editedImage] as! UIImage
@@ -98,12 +93,11 @@ class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, 
         let scaledImage = image.af.imageAspectScaled(toFill: size)
         
         imageView.image = scaledImage
-        
+       
         dismiss(animated: true, completion: nil)
     }
     
-    
->>>>>>> Stashed changes
+
     @IBAction func onPostButton(_ sender: Any) {
         if let location = locationManager.location {
             let latitude = location.coordinate.latitude
