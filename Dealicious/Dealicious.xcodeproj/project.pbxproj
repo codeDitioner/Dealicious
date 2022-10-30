@@ -18,6 +18,8 @@
 		6785741C28F52F5300467138 /* DealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6785741B28F52F5300467138 /* DealCell.swift */; };
 		6785741E28F540ED00467138 /* NewDealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6785741D28F540ED00467138 /* NewDealViewController.swift */; };
 		C43700ACCA2A16242B0B8AA7 /* Pods_Dealicious.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE07B46568FB89C2D3DB974B /* Pods_Dealicious.framework */; };
+		C58C876F290B85810064929F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C876E290B85810064929F /* MapViewController.swift */; };
+		C5F54AAA290B940400C9D46D /* ShopsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F54AA9290B940400C9D46D /* ShopsListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		6785741928F52EE700467138 /* DealsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealsViewController.swift; sourceTree = "<group>"; };
 		6785741B28F52F5300467138 /* DealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealCell.swift; sourceTree = "<group>"; };
 		6785741D28F540ED00467138 /* NewDealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDealViewController.swift; sourceTree = "<group>"; };
+		C58C876E290B85810064929F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		C5F54AA9290B940400C9D46D /* ShopsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsListTableViewController.swift; sourceTree = "<group>"; };
 		D4150C8A237446E01D55580D /* Pods-Dealicious.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dealicious.debug.xcconfig"; path = "Target Support Files/Pods-Dealicious/Pods-Dealicious.debug.xcconfig"; sourceTree = "<group>"; };
 		EE07B46568FB89C2D3DB974B /* Pods_Dealicious.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dealicious.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7DEE9CF5626899DDCA11F78 /* Pods-Dealicious.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dealicious.release.xcconfig"; path = "Target Support Files/Pods-Dealicious/Pods-Dealicious.release.xcconfig"; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				6785740128F5193E00467138 /* AppDelegate.swift */,
+				C58C876E290B85810064929F /* MapViewController.swift */,
+				C5F54AA9290B940400C9D46D /* ShopsListTableViewController.swift */,
 				6785740328F5193E00467138 /* SceneDelegate.swift */,
 				6785740528F5193E00467138 /* LoginViewController.swift */,
 				6785740728F5193E00467138 /* Main.storyboard */,
@@ -100,7 +106,6 @@
 				D4150C8A237446E01D55580D /* Pods-Dealicious.debug.xcconfig */,
 				F7DEE9CF5626899DDCA11F78 /* Pods-Dealicious.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -226,6 +231,8 @@
 				6785741C28F52F5300467138 /* DealCell.swift in Sources */,
 				1C5B307529073DAE003E1E9C /* DealDetailsViewController.swift in Sources */,
 				6785740428F5193E00467138 /* SceneDelegate.swift in Sources */,
+				C58C876F290B85810064929F /* MapViewController.swift in Sources */,
+				C5F54AAA290B940400C9D46D /* ShopsListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
