@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,7 @@
 		6785741A28F52EE700467138 /* DealsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6785741928F52EE700467138 /* DealsViewController.swift */; };
 		6785741C28F52F5300467138 /* DealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6785741B28F52F5300467138 /* DealCell.swift */; };
 		6785741E28F540ED00467138 /* NewDealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6785741D28F540ED00467138 /* NewDealViewController.swift */; };
+		67E6697D2910D46600E3A756 /* SkyFloatingLabelTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 67E6697C2910D46600E3A756 /* SkyFloatingLabelTextField */; };
 		C43700ACCA2A16242B0B8AA7 /* Pods_Dealicious.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE07B46568FB89C2D3DB974B /* Pods_Dealicious.framework */; };
 		C58C876F290B85810064929F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C876E290B85810064929F /* MapViewController.swift */; };
 		C5F54AAA290B940400C9D46D /* ShopsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F54AA9290B940400C9D46D /* ShopsListTableViewController.swift */; };
@@ -52,6 +53,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C43700ACCA2A16242B0B8AA7 /* Pods_Dealicious.framework in Frameworks */,
+				67E6697D2910D46600E3A756 /* SkyFloatingLabelTextField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +135,9 @@
 			dependencies = (
 			);
 			name = Dealicious;
+			packageProductDependencies = (
+				67E6697C2910D46600E3A756 /* SkyFloatingLabelTextField */,
+			);
 			productName = Dealicious;
 			productReference = 678573FE28F5193E00467138 /* Dealicious.app */;
 			productType = "com.apple.product-type.application";
@@ -161,6 +166,9 @@
 				Base,
 			);
 			mainGroup = 678573F528F5193E00467138;
+			packageReferences = (
+				67E6697B2910D46600E3A756 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */,
+			);
 			productRefGroup = 678573FF28F5193E00467138 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -438,6 +446,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		67E6697B2910D46600E3A756 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Skyscanner/SkyFloatingLabelTextField";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		67E6697C2910D46600E3A756 /* SkyFloatingLabelTextField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 67E6697B2910D46600E3A756 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */;
+			productName = SkyFloatingLabelTextField;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 678573F628F5193E00467138 /* Project object */;
 }

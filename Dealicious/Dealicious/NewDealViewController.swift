@@ -11,6 +11,8 @@ import Parse
 import AlamofireImage
 import CoreLocation
 
+import SkyFloatingLabelTextField
+
 class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     private lazy var locationManager: CLLocationManager = {
@@ -21,50 +23,67 @@ class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, 
     }()
     
     
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var storeField: UITextField!
-    @IBOutlet weak var productField: UITextField!
+    @IBOutlet weak var dealImageView3: UIImageView!
+    @IBOutlet weak var dealImageView2: UIImageView!
+    @IBOutlet weak var dealImageView: UIImageView!
+    @IBOutlet weak var storeField: SkyFloatingLabelTextField!
+    @IBOutlet weak var productField: SkyFloatingLabelTextField!
     @IBOutlet weak var brandField: UITextField!
-    @IBOutlet weak var descriptionField: UITextField!
+    @IBOutlet weak var descriptionField: SkyFloatingLabelTextField!
     @IBOutlet weak var dealendsField: UITextField!
     @IBOutlet weak var dealPriceField: UITextField!
     @IBOutlet weak var normalPriceField: UITextField!
     
+    
+    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var addButton: UIButton!
+    
+    var images:[UIImageView] = []
+    
     @IBAction func onSubmit(_ sender: Any) {
         
-        let deal = PFObject(className: "Deals")
-        
-        deal["author"] = PFUser.current()!
-        deal["store"] = storeField.text
-        deal["product"] = productField.text
-        deal["brand"] = brandField.text
-        deal["description"] = descriptionField.text
-        deal["dealEnds"] = dealendsField.text
-        deal["dealPrice"] = dealPriceField.text
-        deal["normalPrice"] = normalPriceField.text
-        
-        let imageData = imageView.image!.pngData()
-        let file = PFFileObject(name: "image.png", data: imageData!)
-        
-        deal["image"] = file
-        
+        if (validateForms()) {
+            
+            let deal = PFObject(className: "Deals")
+            
+            deal["author"] = PFUser.current()!
+            deal["store"] = storeField.text
+            deal["product"] = productField.text
+            deal["brand"] = brandField.text
+            deal["description"] = descriptionField.text
+            deal["dealEnds"] = dealendsField.text
+            deal["dealPrice"] = dealPriceField.text
+            deal["normalPrice"] = normalPriceField.text
+            
+            let imageData = dealImageView.image!.pngData()
+            let file = PFFileObject(name: "image.png", data: imageData!)
+            deal["image"] = file
+            
+            let imageData2 = dealImageView2.image!.pngData()
+            let file2 = PFFileObject(name: "image.png", data: imageData2!)
+            deal["image2"] = file2
 
-        //Pushing location to DB
-        if let location = locationManager.location {
-            let latitude = location.coordinate.latitude
-            let longitude = location.coordinate.longitude
-            // Handle location update
-            print("Lng: \(longitude) & Lat: \(latitude)")
-            deal["longitude"] = longitude
-            deal["latitude"] = latitude
-        }
-        
-        deal.saveInBackground{ (success, error) in
-            if success{
-                self.dismiss(animated: true, completion: nil)
-                print("saved!")
-            } else {
-                print("error!")
+            let imageData3 = dealImageView3.image!.pngData()
+            let file3 = PFFileObject(name: "image.png", data: imageData3!)
+            deal["image3"] = file3
+            
+            //Pushing location to DB
+            if let location = locationManager.location {
+                let latitude = location.coordinate.latitude
+                let longitude = location.coordinate.longitude
+                // Handle location update
+                print("Lng: \(longitude) & Lat: \(latitude)")
+                deal["longitude"] = longitude
+                deal["latitude"] = latitude
+            }
+            
+            deal.saveInBackground{ (success, error) in
+                if success{
+                    self.dismiss(animated: true, completion: nil)
+                    print("saved!")
+                } else {
+                    print("error!")
+                }
             }
         }
     }
@@ -91,21 +110,72 @@ class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         let size = CGSize(width: 300, height: 300)
         let scaledImage = image.af.imageAspectScaled(toFill: size)
-        
-        imageView.image = scaledImage
+        for im in images {
+            if im.image?.pngData() == UIImage(named:"image_placeholder")?.pngData() {
+                im.image = scaledImage
+                break
+            }
+        }
+        //imageView.image = scaledImage
        
         dismiss(animated: true, completion: nil)
     }
     
-
-    @IBAction func onPostButton(_ sender: Any) {
-        if let location = locationManager.location {
-            let latitude = location.coordinate.latitude
-            let longitude = location.coordinate.longitude
-            // Handle location update
-            print("\(latitude) & \(longitude)")
+    
+    func validateForms () -> Bool {
+        var valid = true
+        
+        if descriptionField.text!.isEmpty {
+            descriptionField.errorMessage = "Required Field"
+            valid = false
+        } else {
+            descriptionField.errorMessage = ""
+            valid = true
         }
-        //dismiss(animated: true, completion: nil)
+        
+        if storeField.text!.isEmpty {
+            storeField.errorMessage = "Required Field"
+            valid = false
+
+        } else {
+            storeField.errorMessage = ""
+            valid = true
+        }
+        
+        if productField.text!.isEmpty {
+            productField.errorMessage = "Required Field"
+            valid = false
+        } else {
+            productField.errorMessage = ""
+            valid = true
+        }
+        return valid
+    }
+    
+    @IBAction func onResetButton(_ sender: Any) {
+        descriptionField.text = ""
+        storeField.text = ""
+        productField.text = ""
+        brandField.text = ""
+        dealendsField.text = ""
+        dealPriceField.text = ""
+        normalPriceField.text = ""
+        images.forEach { (im) in
+            im.image = UIImage(named:"image_placeholder")
+        }
+    }
+    
+    @IBAction func addImageButton(_ sender: Any) {
+        let picker = UIImagePickerController()
+               picker.delegate = self
+               picker.allowsEditing = true
+               
+               if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                   picker.sourceType = .photoLibrary
+               } else {
+                   picker.sourceType = .photoLibrary
+               }
+               present(picker, animated: true, completion: nil)
     }
     
     
@@ -117,6 +187,17 @@ class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, 
         super.viewDidLoad()
         locationManager.requestWhenInUseAuthorization()
         
+        submitButton.layer.cornerRadius = 5
+        addButton.layer.cornerRadius = 5
+        
+        dealImageView.layer.cornerRadius = 10
+        dealImageView2.layer.cornerRadius = 10
+        dealImageView3.layer.cornerRadius = 10
+        images.append(dealImageView)
+        images.append(dealImageView2)
+        images.append(dealImageView3)
+
+
         // Request a user’s location once
         // Do any additional setup after loading the view.
         
