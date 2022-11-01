@@ -23,6 +23,8 @@ class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, 
     }()
     
     
+    let datePicker = UIDatePicker()
+    
     @IBOutlet weak var dealImageView3: UIImageView!
     @IBOutlet weak var dealImageView2: UIImageView!
     @IBOutlet weak var dealImageView: UIImageView!
@@ -197,11 +199,37 @@ class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, 
         images.append(dealImageView2)
         images.append(dealImageView3)
 
-
+        createDatePicker()
         // Request a user’s location once
         // Do any additional setup after loading the view.
         
     }
+    
+    func createToolbar() -> UIToolbar {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneButtonPressed))
+        toolbar.setItems([doneButton], animated: true)
+        
+        return toolbar
+    }
+    
+    func createDatePicker() {
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.datePickerMode = .date
+        dealendsField.inputView = datePicker
+        dealendsField.inputAccessoryView = createToolbar()
+    }
+    
+    @objc func doneButtonPressed () {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        self.dealendsField.text = dateFormatter.string(from: datePicker.date)
+        self.view.endEditing(true)
+    }
+    
     
 }
 
