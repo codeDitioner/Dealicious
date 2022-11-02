@@ -7,11 +7,19 @@
 //
 
 import UIKit
+import Parse
 
 class DealDetailsViewController: UIViewController {
+    
+    var deal: [String:Any]!
 
+    @IBOutlet weak var dealImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(deal)
+//        print(deal["price"])
 
         // Do any additional setup after loading the view.
     }
