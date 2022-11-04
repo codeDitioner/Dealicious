@@ -393,6 +393,7 @@
 			baseConfigurationReference = D4150C8A237446E01D55580D /* Pods-Dealicious.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Dealicious/Info.plist;
@@ -413,6 +414,7 @@
 			baseConfigurationReference = F7DEE9CF5626899DDCA11F78 /* Pods-Dealicious.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Dealicious/Info.plist;
