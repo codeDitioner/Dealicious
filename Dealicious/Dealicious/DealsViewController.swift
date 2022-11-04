@@ -44,6 +44,7 @@ class DealsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let query = PFQuery(className:"Deals")
         query.includeKey("author")
         query.limit = 10
+        query.order(byDescending: "createdAt")
         
         query.findObjectsInBackground{ (deals, error) in
             if deals != nil {

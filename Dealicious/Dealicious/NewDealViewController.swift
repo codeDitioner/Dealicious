@@ -13,7 +13,7 @@ import CoreLocation
 
 import SkyFloatingLabelTextField
 
-class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -200,6 +200,10 @@ class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, 
         images.append(dealImageView3)
 
         createDatePicker()
+        
+        dealPriceField.delegate = self
+        normalPriceField.delegate = self
+        
         // Request a user’s location once
         // Do any additional setup after loading the view.
         
@@ -230,6 +234,49 @@ class NewDealViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.view.endEditing(true)
     }
     
+    // handling currency input fields
+    var amt: Int = 0
+    var amt2: Int = 0
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField === self.dealPriceField {
+            if let digit = Int(string){
+                amt = amt*10 + digit
+                dealPriceField.text = updateAmount()
+            }
+            if string == "" {
+                amt = amt/10
+                dealPriceField.text = amt == 0 ? "" : updateAmount()
+            }
+        }
+        if textField === self.normalPriceField {
+            if let digit = Int(string){
+                amt2 = amt2*10 + digit
+                normalPriceField.text = updateAmount2()
+            }
+            if string == "" {
+                amt2 = amt2/10
+                normalPriceField.text = amt2 == 0 ? "" : updateAmount2()
+            }
+        }
+        return false
+    }
+    
+    // for dealPriceField
+    func updateAmount() -> String? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = NumberFormatter.Style.currency
+        let amount = Double(amt/100) + Double(amt%100)/100
+        return formatter.string(from: NSNumber(value: amount))
+    }
+    // for normalPriceField
+    func updateAmount2() -> String? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = NumberFormatter.Style.currency
+        let amount = Double(amt2/100) + Double(amt2%100)/100
+        return formatter.string(from: NSNumber(value: amount))
+    }
+
     
 }
 
