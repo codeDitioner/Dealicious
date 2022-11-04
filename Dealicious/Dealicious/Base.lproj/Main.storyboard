@@ -689,14 +689,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bck-ZA-InB">
-                                <rect key="frame" x="9" y="0.0" width="405" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fgv-3g-3vt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="bck-ZA-InB" firstAttribute="top" secondItem="i07-tB-6cW" secondAttribute="top" id="BKY-DT-zr8"/>
-                            <constraint firstItem="bck-ZA-InB" firstAttribute="leading" secondItem="fgv-3g-3vt" secondAttribute="leading" constant="9" id="FGA-0h-sxO"/>
+                            <constraint firstItem="bck-ZA-InB" firstAttribute="leading" secondItem="fgv-3g-3vt" secondAttribute="leading" id="GI1-IE-QzC"/>
                             <constraint firstAttribute="bottom" secondItem="bck-ZA-InB" secondAttribute="bottom" id="euo-Yc-mZn"/>
                             <constraint firstAttribute="trailing" secondItem="bck-ZA-InB" secondAttribute="trailing" id="yef-eH-skF"/>
                         </constraints>
