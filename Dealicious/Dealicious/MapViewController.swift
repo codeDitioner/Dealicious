@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Parse
 
 protocol HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark)
@@ -21,9 +22,9 @@ class MapViewController: UIViewController {
     var locationManager = CLLocationManager()
     var resultSearchController:UISearchController? = nil
     var selectedPin:MKPlacemark? = nil
-    
-    
-    
+    var deals = [PFObject]()
+    var selectedDeal: PFObject?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
@@ -32,6 +33,7 @@ class MapViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
         
+        getDeal()
         let locationSearchTable = storyboard!.instantiateViewController(
             withIdentifier: "searchTable") as! ShopsListTableViewController
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
@@ -52,6 +54,29 @@ class MapViewController: UIViewController {
         
     }
     
+   
+    func getDeal(){
+        let query = PFQuery(className: "Deals")
+        query.includeKeys(["store", "latitude", "longitude", "product"])
+        query.findObjectsInBackground{ [self](deals, error) in
+            if deals != nil {
+                let returnedDeals = deals!
+                    for i in returnedDeals {
+                        if i["latitude"] != nil {
+                            let annotation = MKPointAnnotation();
+                            annotation.coordinate = CLLocationCoordinate2D(latitude: i["latitude"] as! Double, longitude: i["longitude"] as! Double);
+                            annotation.title = i["product"] as? String;
+                            annotation.subtitle = i["store"] as? String;
+                            self.mapView.addAnnotation(annotation)
+                        }
+                    }
+                
+                }
+            }
+           
+        
+        }
+    
 }
 
 extension MapViewController : CLLocationManagerDelegate {
@@ -62,19 +87,18 @@ extension MapViewController : CLLocationManagerDelegate {
         }
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            if let location = locations.first {
-                let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025))
-                mapView.setRegion(region, animated: true)
-            }
+        if let location = locations.first {
+            let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025))
+            mapView.setRegion(region, animated: true)
         }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-            print(error)
-        }
-        
-   
     }
     
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
+    
+    
+}
 
 
 extension MapViewController: HandleMapSearch {
@@ -82,13 +106,13 @@ extension MapViewController: HandleMapSearch {
         // cache the pin
         selectedPin = placemark
         // clear existing pins
-        mapView.removeAnnotations(mapView.annotations)
+        //mapView.removeAnnotations(mapView.annotations)
         let annotation = MKPointAnnotation()
         annotation.coordinate = placemark.coordinate
         annotation.title = placemark.name
         if let city = placemark.locality,
         let state = placemark.administrativeArea {
-            annotation.subtitle = "(city) (state)"
+            annotation.subtitle = city
         }
         mapView.addAnnotation(annotation)
         let span = MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025)
@@ -96,3 +120,5 @@ extension MapViewController: HandleMapSearch {
         mapView.setRegion(region, animated: true)
     }
 }
+
+
