@@ -16,7 +16,7 @@ class DealsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var tableView: UITableView!
     
     var deals = [PFObject]()
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -27,15 +27,15 @@ class DealsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
-//        var rightAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Add", style: UIBarButtonItem.Style.plain, target: self, action: "addTapped:")
-//
-//        var rightSearchBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.search, target: self, action: "searchTapped:")
-//
-//        self.navigationItem.setRightBarButtonItems([rightAddBarButtonItem,rightSearchBarButtonItem], animated: true)
-
-
+        //        var rightAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Add", style: UIBarButtonItem.Style.plain, target: self, action: "addTapped:")
+        //
+        //        var rightSearchBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.search, target: self, action: "searchTapped:")
+        //
+        //        self.navigationItem.setRightBarButtonItems([rightAddBarButtonItem,rightSearchBarButtonItem], animated: true)
         
-
+        
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,7 +43,7 @@ class DealsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let query = PFQuery(className:"Deals")
         query.includeKey("author")
-        query.limit = 10
+        query.limit = 15
         query.order(byDescending: "createdAt")
         
         query.findObjectsInBackground{ (deals, error) in
@@ -54,14 +54,14 @@ class DealsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return deals.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DealCell") as! DealCell
-
+        
         let deal = deals[indexPath.row]
         let user = deal["author"] as! PFUser
         cell.dealTitleLabel.text = deal["product"] as! String
@@ -75,9 +75,9 @@ class DealsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let ImageFile = deal["image"] as! PFFileObject
         let urlString = ImageFile.url!
         let url = URL(string: urlString)!
-
+        
         cell.dealImageView.af.setImage(withURL: url)
-
+        
         
         //some UI Features
         
@@ -95,21 +95,46 @@ class DealsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     
-
+    
     // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //prep for segue to deals detail
+        //find the selected deal
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)!
+        let deal = deals[indexPath.row]
 
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        //prep for segue to deals detail
-//        //find the selected deal
-//        let cell = sender as! UITableViewCell
-//        let indexPath = tableView.indexPath(for: cell)!
-//        let deal = deals[indexPath.row]
+    
+        //pass the selected deal to details view controller
+
+        
+        let detailsViewController = segue.destination as! DealDetailsViewController
+        detailsViewController.deal = deal
+//        let ImageFile = deal["image"] as! PFFileObject
+//        let urlString = ImageFile.url!
+//        let url = URL(string: urlString)!
 //
-//        let price = deal["dealPrice"]
-//        //pass the selected deal to details view controller
-//        let detailsViewController = segue.destination as! DealDetailsViewController
-////        detailsViewController.deal = price as! [String : Any]
-//    }
-
+//        if (deal["image"] != nil){
+//            detailsViewController.dealImage.af.setImage(withURL: url)
+//        }
+        
+        // have to pass these individually as a workaround because I couldn'y figure out how to pass the whole PFObject type
+//
+//        detailsViewController.price =  deal["dealPrice"] as? String
+//        detailsViewController.brand =  deal["brand"] as? String
+//        detailsViewController.product =  deal["product"] as? String
+//        detailsViewController.username =  user.username
+//        detailsViewController.imageDeal =  deal["dealImage"] as? PFFileObject
+//        detailsViewController.storeLocation =  deal["store"] as? String
+//        detailsViewController.descript =  deal["description"] as? String
+//
+//
+//
+//
+//
+//
+//
+    }
 }
