@@ -103,18 +103,41 @@ class DealsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else {return}
         //prep for segue to deals detail
         //find the selected deal
-//        let cell = sender as! UITableViewCell
-//        let indexPath = tableView.indexPath(for: cell)!
-//        let deal = deals[indexPath.row]
-//
-//
-//        //pass the selected deal to details view controller
-//
-//
-//        let detailsViewController = segue.destination as! DealDetailsViewController
-//        detailsViewController.deal = deal
+        
+        //need switch identifier to tell which segue should be used
+        switch identifier {
+    
+        case "toProfile":
+            print("to profile")
+        case "toDetail":
+            print("to Details")
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPath(for: cell)!
+            let deal = deals[indexPath.row]
+
+
+            //pass the selected deal to details view controller
+
+
+            let detailsViewController = segue.destination as! DealDetailsViewController
+            detailsViewController.deal = deal
+            
+        case "toNewPost":
+            print("to NewPost")
+
+        
+            
+            
+        default:
+            print("unknown segueue identifer")
+        }
+      
+        
+        
+        
 //        let ImageFile = deal["image"] as! PFFileObject
 //        let urlString = ImageFile.url!
 //        let url = URL(string: urlString)!

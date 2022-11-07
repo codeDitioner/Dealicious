@@ -251,7 +251,7 @@
                                             <outlet property="storeLocationLabel" destination="m7G-T1-0y2" id="JiK-gb-yiw"/>
                                             <outlet property="userImage" destination="gcq-Rb-Dd1" id="hpY-0j-JsN"/>
                                             <outlet property="userNameLabel" destination="NeF-CD-1Eq" id="UKH-tm-ULW"/>
-                                            <segue destination="3WT-9I-AuW" kind="show" id="yzC-Hi-KtQ"/>
+                                            <segue destination="3WT-9I-AuW" kind="show" identifier="toDetail" id="yzC-Hi-KtQ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -269,12 +269,12 @@
                     <navigationItem key="navigationItem" title="Deals list" id="Ngh-pj-Xo0">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="person.fill" catalog="system" id="xbJ-pH-W52">
                             <connections>
-                                <segue destination="hbt-Og-1fi" kind="show" identifier="" id="6mc-ej-z3s"/>
+                                <segue destination="hbt-Og-1fi" kind="show" identifier="toProfile" id="6mc-ej-z3s"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="New Post" id="kcA-hf-fOA">
                             <connections>
-                                <segue destination="xga-ml-bSa" kind="presentation" modalPresentationStyle="fullScreen" id="mcB-mP-dXE"/>
+                                <segue destination="xga-ml-bSa" kind="presentation" identifier="toNewPost" modalPresentationStyle="fullScreen" id="mcB-mP-dXE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
