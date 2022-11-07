@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iij-WL-UUm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -269,7 +269,7 @@
                     <navigationItem key="navigationItem" title="Deals list" id="Ngh-pj-Xo0">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="person.fill" catalog="system" id="xbJ-pH-W52">
                             <connections>
-                                <segue destination="hbt-Og-1fi" kind="show" id="6mc-ej-z3s"/>
+                                <segue destination="hbt-Og-1fi" kind="show" identifier="" id="6mc-ej-z3s"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="New Post" id="kcA-hf-fOA">

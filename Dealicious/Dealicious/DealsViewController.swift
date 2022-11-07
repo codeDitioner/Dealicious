@@ -27,11 +27,14 @@ class DealsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
-        //        var rightAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Add", style: UIBarButtonItem.Style.plain, target: self, action: "addTapped:")
-        //
-        //        var rightSearchBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.search, target: self, action: "searchTapped:")
-        //
-        //        self.navigationItem.setRightBarButtonItems([rightAddBarButtonItem,rightSearchBarButtonItem], animated: true)
+        
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: "navigateToNextViewController")
+//
+//
+//        func navigateToNextViewController(){
+//            self.performSegue(withIdentifier: "goProfile", sender: self)
+//        }
+
         
         
         
@@ -102,16 +105,16 @@ class DealsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //prep for segue to deals detail
         //find the selected deal
-        let cell = sender as! UITableViewCell
-        let indexPath = tableView.indexPath(for: cell)!
-        let deal = deals[indexPath.row]
-
-    
-        //pass the selected deal to details view controller
-
-        
-        let detailsViewController = segue.destination as! DealDetailsViewController
-        detailsViewController.deal = deal
+//        let cell = sender as! UITableViewCell
+//        let indexPath = tableView.indexPath(for: cell)!
+//        let deal = deals[indexPath.row]
+//
+//
+//        //pass the selected deal to details view controller
+//
+//
+//        let detailsViewController = segue.destination as! DealDetailsViewController
+//        detailsViewController.deal = deal
 //        let ImageFile = deal["image"] as! PFFileObject
 //        let urlString = ImageFile.url!
 //        let url = URL(string: urlString)!
