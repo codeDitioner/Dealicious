@@ -71,8 +71,21 @@ class DealsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.dealPriceLabel.text = deal["dealPrice"] as! String
         cell.storeLocationLabel.text = deal["store"] as! String
         cell.dealExpirationLabel.text = deal["dealEnds"] as! String
+        
         cell.userNameLabel.text = user.username
         
+        
+        if let imageFile1 = PFUser.current()!["image"] as? PFFileObject {
+            let urlString1 = imageFile1.url!
+            let url1 = URL(string: urlString1)!
+            cell.userImage.af.setImage(withURL: url1)}
+        
+//
+//        let ImageFile = user.image as! PFFileObject
+//        let urlString = ImageFile.url!
+//        let url = URL(string: urlString)!
+//
+//        cell.userImage.af.setImage(withURL: url)
         
         
         let ImageFile = deal["image"] as! PFFileObject
