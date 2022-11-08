@@ -28,6 +28,9 @@ class ProfileViewController: UIViewController {
         if let username = PFUser.current()!["username"] as? String {
             userLabel.text = username
         }
+        userLabel.layer.borderWidth = 1
+        userDescription.layer.borderWidth = 1
+        profileImage.layer.borderWidth = 3
         // Do any additional setup after loading the view.
     }
     
