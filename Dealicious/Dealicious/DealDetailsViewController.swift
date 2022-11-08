@@ -15,6 +15,7 @@ class DealDetailsViewController: UIViewController {
     var deal: PFObject!
 
 
+    @IBOutlet weak var dealExpLabel: UILabel!
     @IBOutlet weak var brandLabel: UILabel!
     @IBOutlet weak var productLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -55,6 +56,7 @@ class DealDetailsViewController: UIViewController {
         storeLocationLabel.text  =  deal["store"] as? String
         dealDescriptionLabel.text =  deal["description"] as? String
         normalPriceLabel.text = deal["normalPrice"] as? String
+        dealExpLabel.text = deal["dealEnds"] as? String
 //        dealPostedLabel.text = dateFormatterPrint.string(from: date! as Date)
         
         
