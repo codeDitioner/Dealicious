@@ -74,20 +74,30 @@ class DealsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         cell.userNameLabel.text = user.username
         
+        cell.userImage.layer.borderWidth = 3
+        cell.userImage.layer.borderColor = UIColor(red: 0.1137, green: 0.1765, blue: 0.2667, alpha: 1.0).cgColor
         
-        if let imageFile1 = PFUser.current()!["image"] as? PFFileObject {
-            let urlString1 = imageFile1.url!
-            let url1 = URL(string: urlString1)!
-            cell.userImage.af.setImage(withURL: url1)}
+//        //set user profile picture
+//            let ImageFile1 = user["image"] as! PFFileObject
+//            let urlString1 = ImageFile1.url!
+//            let url1 = URL(string: urlString1)!
+//            cell.userImage.af.setImage(withURL: url1)
+    
         
-//
-//        let ImageFile = user.image as! PFFileObject
-//        let urlString = ImageFile.url!
-//        let url = URL(string: urlString)!
-//
-//        cell.userImage.af.setImage(withURL: url)
+
+//Bonus -> setting profile image
+if let userImageFile = user["image"] as? PFFileObject {
+           let userImageUrlString = userImageFile.url!
+           let userImageUrl = URL(string: userImageUrlString)!
+           cell.userImage.af.setImage(withURL: userImageUrl)
+}else{
+    let defaultImage = UIImage(named: "Profile Image")
+    cell.userImage.image = defaultImage
+}
+            
+    
         
-        
+        //set image for deals
         let ImageFile = deal["image"] as! PFFileObject
         let urlString = ImageFile.url!
         let url = URL(string: urlString)!
@@ -124,9 +134,8 @@ class DealsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         switch identifier {
     
         case "toProfile":
-            print("to profile")
+           print("toProfile")
         case "toDetail":
-            print("to Details")
             let cell = sender as! UITableViewCell
             let indexPath = tableView.indexPath(for: cell)!
             let deal = deals[indexPath.row]
