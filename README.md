@@ -5,9 +5,9 @@ Original App Design Project - README Template
 
 ## Table of Contents
 1. [Overview](#Overview)
-1. [Product Spec](#Product-Spec)
-1. [Wireframes](#Wireframes)
-2. [Schema](#Schema)
+2. [Product Spec](#Product-Spec)
+3. [Demo](#Demo)
+4. [Schema](#Schema)
 
 ## Overview
 ### Description
@@ -26,7 +26,7 @@ Application allow users to input information regarding various deals in their ne
 
 ## Product Spec
 
-### 1. User Stories (Required and Optional)
+### 1. User Stories
 
 **Required Must-have Stories**
 1. Users have accounts and can log into them
@@ -87,16 +87,15 @@ Application allow users to input information regarding various deals in their ne
     * Stores Stream
     * Deals Stream
     * Store's Deals Stream
-
-## Wireframes
-<img src="https://i.imgur.com/82wOpJq.png" width=600><br>
-<img src="https://i.imgur.com/MxzsIJs.png" width=600><br>
-<img src="https://i.imgur.com/KP7InBq.png" width=600><br>
-
-### [BONUS] Digital Wireframes & Mockups
-
-### [BONUS] Interactive Prototype
+## Demo
+### Interactive Prototype
 <img src="https://slack-imgs.com/?c=1&o1=ro&url=http%3A%2F%2Fg.recordit.co%2FQ0eK0uqFdZ.gif" width=600><br>
+
+### Final Product
+<img src="https://i.imgur.com/CrjqYLm.gif" width=600><br>
+<img src="https://i.imgur.com/K6VWxcx.gif" width=600><br>
+<img src="https://i.imgur.com/OrhSbXW.gif" width=600><br>
+
 
 ## Schema 
 ### Models
@@ -124,8 +123,6 @@ Deals Posts
 | Store     | String     |  name of store from dropdown   |
 
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/1200px-Lion_waiting_in_Namibia.jpg" width=600><br>
-
 ### Networking
 **List of network requests by screen**
 * Login Screen
@@ -143,5 +140,3 @@ Deals Posts
     * (Create/POST) create new deal
     * (Delete) delete deal (maybe?)
 
-[Create basic snippets for each Parse network request]
-[OPTIONAL: List endpoints if using existing API such as Yelp]
