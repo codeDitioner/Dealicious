@@ -1,7 +1,9 @@
-Original App Design Project - README Template
-===
+# Dealicious
+![1](https://user-images.githubusercontent.com/100062754/210193715-13fa02af-8ce1-4ec9-bd70-c5a0c290f1ac.gif)
+![2](https://user-images.githubusercontent.com/100062754/210193716-e71c2363-52c7-4819-a16a-1f3eaf766f9d.gif)
+![3](https://user-images.githubusercontent.com/100062754/210193718-8a447d4f-8dc1-46a6-b66f-2e72913d1acd.gif)
 
-# iOS Deals 
+
 
 ## Table of Contents
 1. [Overview](#Overview)
@@ -38,7 +40,7 @@ Application allow users to input information regarding various deals in their ne
 1. Users can add image to their profile 
 2. Users are rewarded with point system 
 3. Users can post a picture with their deal 
-4. 4. Users can press into the store, or deals to find more details about it.
+4. Users can press into the store, or deals to find more details about it.
 
 ### 2. Screen Archetypes
 
@@ -90,12 +92,6 @@ Application allow users to input information regarding various deals in their ne
 ## Demo
 ### Interactive Prototype
 <img src="https://slack-imgs.com/?c=1&o1=ro&url=http%3A%2F%2Fg.recordit.co%2FQ0eK0uqFdZ.gif" width=600><br>
-
-### Final Product
-<img src="https://i.imgur.com/CrjqYLm.gif"><br>
-<img src="https://i.imgur.com/K6VWxcx.gif"><br>
-<img src="https://i.imgur.com/OrhSbXW.gif"><br>
-
 
 ## Schema 
 ### Models
