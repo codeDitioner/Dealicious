@@ -92,9 +92,9 @@ Application allow users to input information regarding various deals in their ne
 <img src="https://slack-imgs.com/?c=1&o1=ro&url=http%3A%2F%2Fg.recordit.co%2FQ0eK0uqFdZ.gif" width=600><br>
 
 ### Final Product
-<img src="https://i.imgur.com/CrjqYLm.gif" width=600><br>
-<img src="https://i.imgur.com/K6VWxcx.gif" width=600><br>
-<img src="https://i.imgur.com/OrhSbXW.gif" width=600><br>
+<img src="https://i.imgur.com/CrjqYLm.gif"><br>
+<img src="https://i.imgur.com/K6VWxcx.gif"><br>
+<img src="https://i.imgur.com/OrhSbXW.gif"><br>
 
 
 ## Schema 
